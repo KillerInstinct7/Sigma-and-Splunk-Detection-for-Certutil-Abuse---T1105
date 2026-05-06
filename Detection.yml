@@ -1,4 +1,3 @@
-/*
 title:  Suspicious Certutil.exe Behavior
 id: 76c5568e-9358-4b07-9a46-66e247cb397b  
 description:  Detect certutil.exe execution using -urlcache or -verifyctl, which may indicate file transfer behavior using a legitimate windows binary.
@@ -22,4 +21,3 @@ detection:
 falsepositives:
 	- Internal certificate retrieval, enterprise PKI usage, and/or software updating mechanisms.
 level:  medium
-*/
