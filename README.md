@@ -44,56 +44,31 @@ Contextual Enrichment Considerations:
 
 
 # Sigma Rule
-title: Suspicious Certutil.exe Behavior
-
-id: 76c5568e-9358-4b07-9a46-66e247cb397b
-
-status: experimental
-
-description: Detects certutil.exe execution using the -urlcache or -verifyctl flags, which may indicate file transfer behavior using a legitimate Windows binary.
-
-references:
-  - https://attack.mitre.org/techniques/T1105/
-
-author: Matthew Mayne
-
-date: '2026-05-05'
-
-date modified: '2026-05-06'
-
+/*
+title:  Suspicious Certutil.exe Behavior
+id: 76c5568e-9358-4b07-9a46-66e247cb397b  
+description:  Detect certutil.exe execution using -urlcache or -verifyctl, which may indicate file transfer behavior using a legitimate windows binary.
 tags:
-  - attack.command_and_control
-  - attack.t1105
-
+	- attack.t1105
+status: experimental
+author:  Matthew Mayne
+date:  '2026/05/05'
+modified:  '2026/05/05'
 logsource:
-  product: windows
-  category: process_creation
-
+	product:  windows
+	category:  process_creation
 detection:
-
-  selection1:
-  
-    Image|endswith: '\certutil.exe'
-
-    
-  selection2:
-  
-    CommandLine|contains:
-    
-      - '-urlcache'
-      
-      - '-verifyctl'
-
-      
-  condition: selection1 and selection2
-  
+	selection1:
+		Image|endswith: '\certutil.exe'
+	selection2:
+		CommandLine|contains:
+			- '-urlcache'
+			- '-verifyctl'
+	condition: selection1 and selection2
 falsepositives:
-
-  - Internal certificate retrieval, enterprise PKI usage, and/or software updating mechanisms.
-
-
-level: medium
-
+	- Internal certificate retrieval, enterprise PKI usage, and/or software updating mechanisms.
+level:  medium
+*/
 
 # SPL Query
 index="detectionlab_3" Image="*certutil.exe" (CommandLine="*-urlcache*" OR CommandLine="*-verifyctl*")
