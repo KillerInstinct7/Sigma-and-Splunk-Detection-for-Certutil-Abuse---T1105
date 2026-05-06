@@ -1,0 +1,1 @@
+index="detectionlab_3" Image="*certutil.exe" (CommandLine="*-urlcache*" OR CommandLine="*-verifyctl*")
