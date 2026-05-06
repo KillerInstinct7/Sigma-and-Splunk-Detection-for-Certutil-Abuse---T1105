@@ -45,17 +45,26 @@ Contextual Enrichment Considerations:
 
 # Sigma Rule
 title: Suspicious Certutil.exe Behavior
+
 id: 76c5568e-9358-4b07-9a46-66e247cb397b
+
 status: experimental
+
 description: Detects certutil.exe execution using the -urlcache or -verifyctl flags, which may indicate file transfer behavior using a legitimate Windows binary.
+
 references:
   - https://attack.mitre.org/techniques/T1105/
+
 author: Matthew M
+
 date: '2026-05-05'
+
 date modified: '2026-05-06'
+
 tags:
   - attack.command_and_control
   - attack.t1105
+
 logsource:
   product: windows
   category: process_creation
