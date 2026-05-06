@@ -44,31 +44,44 @@ Contextual Enrichment Considerations:
 
 
 # Sigma Rule
-/*
+
 title:  Suspicious Certutil.exe Behavior
-id: 76c5568e-9358-4b07-9a46-66e247cb397b  
+
+id: 76c5568e-9358-4b07-9a46-66e247cb397b
+
 description:  Detect certutil.exe execution using -urlcache or -verifyctl, which may indicate file transfer behavior using a legitimate windows binary.
+
 tags:
 	- attack.t1105
+	
 status: experimental
+
 author:  Matthew Mayne
+
 date:  '2026/05/05'
+
 modified:  '2026/05/05'
+
 logsource:
 	product:  windows
 	category:  process_creation
+
 detection:
-	selection1:
-		Image|endswith: '\certutil.exe'
-	selection2:
-		CommandLine|contains:
-			- '-urlcache'
-			- '-verifyctl'
-	condition: selection1 and selection2
+ selection1:
+   Image|endswith: '\certutil.exe'
+   
+ selection2:
+   CommandLine|contains:
+		- '-urlcache'
+		- '-verifyctl'
+
+ condition: selection1 and selection2
+
 falsepositives:
 	- Internal certificate retrieval, enterprise PKI usage, and/or software updating mechanisms.
+	
 level:  medium
-*/
+
 
 # SPL Query
 index="detectionlab_3" Image="*certutil.exe" (CommandLine="*-urlcache*" OR CommandLine="*-verifyctl*")
